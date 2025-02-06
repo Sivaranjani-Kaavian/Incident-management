@@ -7,8 +7,8 @@ namespace sap.capire.incidents;
 entity Incidents : cuid, managed {  
 customer     : Association to Customers;
 title        : String  @title : 'Title';
-urgency        : Association to Urgency default 'M';
-status         : Association to Status default 'N';
+urgency      : Association to Urgency default 'M';
+status       : Association to Status default 'N';
 conversation  : Composition of many {
     key ID    : UUID;
     timestamp : type of managed:createdAt;
@@ -41,12 +41,12 @@ streetAddress : String;
 
 entity Status : CodeList {
 key code: String enum {
-    new = 'N';
-    assigned = 'A'; 
-    in_process = 'I'; 
-    on_hold = 'H'; 
-    resolved = 'R'; 
-    closed = 'C'; 
+    New = 'N';
+    Assigned = 'A'; 
+    In_process = 'I'; 
+    On_hold = 'H'; 
+    Resolved = 'R'; 
+    Closed = 'C'; 
 };
 criticality : Integer;
 }

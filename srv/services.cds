@@ -9,6 +9,9 @@ using {sap.capire.incidents as my} from '../db/schema';
  @readonly 
  entity Customers as projection on my.Customers;
  }
+ annotate ProcessorService.Incidents with @odata.draft.enabled;
+
+
 
  /**
   * Service used by administrators to manage customers and incidents.
