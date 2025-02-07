@@ -10,8 +10,7 @@ using {sap.capire.incidents as my} from '../db/schema';
  entity Customers as projection on my.Customers;
  }
  annotate ProcessorService.Incidents with @odata.draft.enabled;
-
-
+ annotate ProcessorService with @(requires:'support');
 
  /**
   * Service used by administrators to manage customers and incidents.
@@ -20,3 +19,4 @@ using {sap.capire.incidents as my} from '../db/schema';
     entity Customers as projection on my.Customers;
     entity Incidents as projection on my.Incidents;
   }
+  annotate AdminService with @(require:'admin');
