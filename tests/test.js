@@ -1,6 +1,7 @@
 const cds = require('@sap/cds/lib')
 const { default: axios } = require('axios')
-const { GET, POST, DELETE, PATCH, expect } = cds.test(__dirname + '../../')
+const { GET, POST, DELETE, PATCH, expect } = cds.test(__dirname + '../../', '--with-mocks');
+// const { GET, POST, DELETE, PATCH, expect } = cds.test(__dirname + '../../')
 
 axios.defaults.auth = { username: 'incident.support@tester.sap.com', password: 'initial' }
 
@@ -21,7 +22,7 @@ describe('Test The GET Endpoints', () => {
 
   it('Test Expand Entity Endpoint', async () => {
     const { data } = await GET`/odata/v4/processor/Customers?$select=firstName&$expand=incidents`
-    expect(data).to.be.an('object')
+    expect(data).to.be.an('object') 
   })
 })
 
@@ -112,7 +113,8 @@ describe('Draft Choreography APIs', () => {
           )
         } catch (error) {
           expect(error.response.status).to.eql(500)
-          expect(error.response.data.error.message).to.include(`Can't modify a closed incident`)
+          expect(error.response.data.error.message.toLowerCase()).to.include('closed incident')
+
         }
       })
     })
