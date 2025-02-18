@@ -114,14 +114,6 @@ annotate service.Incidents with {
                 },
                 {
                     $Type : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'firstName',
-                },
-                {
-                    $Type : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'lastName',
-                },
-                {
-                    $Type : 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty : 'name',
                 },
                 {

@@ -1869,7 +1869,8 @@ entity API_BUSINESS_PARTNER.A_BusinessPartner {
   to_BuPaIdentification : Association to many API_BUSINESS_PARTNER.A_BuPaIdentification {  };
   to_BuPaIndustry : Association to many API_BUSINESS_PARTNER.A_BuPaIndustry {  };
   to_BusinessPartner : Association to API_BUSINESS_PARTNER.A_BPFinancialServicesExtn {  };
-  to_BusinessPartnerAddress : Composition of  many API_BUSINESS_PARTNER.A_BusinessPartnerAddress on to_BusinessPartnerAddress.BusinessPartner = BusinessPartner;
+  to_BusinessPartnerAddress : Composition of many API_BUSINESS_PARTNER.A_BusinessPartnerAddress on to_BusinessPartnerAddress.BusinessPartner = BusinessPartner;
+  //to_BusinessPartnerAddress : Composition of  many API_BUSINESS_PARTNER.A_BusinessPartnerAddress on to_BusinessPartnerAddress.BusinessPartner = BusinessPartner;
   to_BusinessPartnerAlias : Association to many API_BUSINESS_PARTNER.A_BusinessPartnerAlias {  };
   to_BusinessPartnerBank : Association to many API_BUSINESS_PARTNER.A_BusinessPartnerBank {  };
   to_BusinessPartnerContact : Association to many API_BUSINESS_PARTNER.A_BusinessPartnerContact {  };
@@ -2037,10 +2038,12 @@ entity API_BUSINESS_PARTNER.A_BusinessPartnerAddress {
   to_AddressUsage : Association to many API_BUSINESS_PARTNER.A_BuPaAddressUsage {  };
   to_BPAddrDepdntIntlLocNumber : Association to API_BUSINESS_PARTNER.A_BPAddrDepdntIntlLocNumber {  };
   to_BPIntlAddressVersion : Association to many API_BUSINESS_PARTNER.A_BPIntlAddressVersion {  };
-  to_EmailAddress : Composition of  many API_BUSINESS_PARTNER.A_AddressEmailAddress  on to_EmailAddress.AddressID = AddressID;
+  // to_EmailAddress : Composition of many API_BUSINESS_PARTNER.A._AddressEmailAddress on to_EmailAddress.AddressID = AddressID;
+  to_EmailAddress : Composition of many API_BUSINESS_PARTNER.A_AddressEmailAddress on to_EmailAddress.AddressID = AddressID;
   to_FaxNumber : Association to many API_BUSINESS_PARTNER.A_AddressFaxNumber {  };
   to_MobilePhoneNumber : Association to many API_BUSINESS_PARTNER.A_AddressPhoneNumber {  };
-  to_PhoneNumber : Composition of  many API_BUSINESS_PARTNER.A_AddressPhoneNumber on to_PhoneNumber.AddressID = AddressID;
+  // to_PhoneNumber : Association to many API_BUSINESS_PARTNER.A_AddressPhoneNumber {  };
+  to_PhoneNumber : Composition of many API_BUSINESS_PARTNER.A_AddressPhoneNumber on to_PhoneNumber.AddressID = AddressID;
   to_URLAddress : Association to many API_BUSINESS_PARTNER.A_AddressHomePageURL {  };
 };
 
