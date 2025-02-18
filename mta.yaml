@@ -11,15 +11,14 @@ build-parameters:
       commands:
         - npm ci
         - npx cds build --production
-        - mkdir -p resources  
+        - mkdir -p resources 
 modules:
   - name: incident-management-srv
     type: nodejs
     path: gen/srv
     parameters:
+      instances: 1
       buildpack: nodejs_buildpack
-      readiness-health-check-type: http
-      readiness-health-check-http-endpoint: /health
     build-parameters:
       builder: npm
     provides:
@@ -30,7 +29,8 @@ modules:
       - name: incident-management-db
       - name: incident-management-auth
       - name: incident-management-destination
-
+     
+      
   - name: incident-management-db-deployer
     type: hdb
     path: gen/db
@@ -99,25 +99,6 @@ modules:
               sap.cloud.service: incidentmanagement.service
 
 resources:
-  - name: incident-management-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana
-      service-plan: hdi-shared
-  - name: incident-management-html5-repo-host
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-host
-  - name: incident-management-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: incident-management-${org}-${space}
-        tenant-mode: dedicated
   - name: incident-management-destination
     type: org.cloudfoundry.managed-service
     parameters:
@@ -148,5 +129,22 @@ resources:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
-
-
+  - name: incident-management-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: incident-management-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: incident-management-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: incident-management-${org}-${space}
+        tenant-mode: dedicated
